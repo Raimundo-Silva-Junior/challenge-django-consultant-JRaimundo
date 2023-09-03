@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+
+    flet:
+        container_name: flet
+        build:
+            context: ./flet_frontend
+        command: python ./flet_frontend/main.py
+
+        volumes: 
+            - ./flet_frontend:/usr/src/app/flet_frontend
+        ports:
+            - 7000:7000
+        depends_on: 
+            - django
+        links:
+            - django
+        restart: on-failure
+
+    redis:
+        image: redis:5.0.0
+
+    django:
+        container_name: django
+        build:
+            context: ./django_backend
+        command: python ./django_backend/manage.py runserver 0.0.0.0:8000
+        volumes: 
+            - ./django_backend:/usr/src/app/django_backend
+        ports:
+            - 8000:8000
+        depends_on: 
+            - redis
+
+    celery:
+        container_name: celery
+        build:
+            context: ./django_backend
+        command: bash -c "
+                cd django_backend
+                && celery --app=django_backend worker -l INFO" 
+        volumes: 
+            - ./django_backend:/usr/src/app/django_backend
+        depends_on: 
+            - redis
+
+

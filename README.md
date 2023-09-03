@@ -31,5 +31,5 @@ novo em Python chamado Flet. Esse framework é moderno e usa como base Flutter, 
 
 ## Observações
 
-a Versão do docker-compose da minha máquina é 2, mas caso dê algum erro, basta alterar para a versão do seu docker-compose ou excluir a versão do arquivo.
+A Versão do docker-compose da minha máquina é 2, mas caso dê algum erro, basta alterar para a versão do seu docker-compose ou excluir a versão do arquivo.
 

@@ -3,7 +3,9 @@
 É necessário ter o docker instalado para iniciar o aplicativo. Antes de mais nada, inicie o daemon do docker com o commando:
 
 - sudo service docker start  (wsl)
+  
   ou
+  
 - sudo systemctl start docker
 
 Depois basta aplicar um docker-compose na pasta do projeto
